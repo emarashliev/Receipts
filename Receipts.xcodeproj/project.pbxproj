@@ -8,12 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		6C3987761FBF6599002539A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3987751FBF6599002539A7 /* AppDelegate.swift */; };
-		6C3987781FBF6599002539A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3987771FBF6599002539A7 /* ViewController.swift */; };
-		6C39877B1FBF6599002539A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3987791FBF6599002539A7 /* Main.storyboard */; };
+		6C3987781FBF6599002539A7 /* ReceiptListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3987771FBF6599002539A7 /* ReceiptListController.swift */; };
+		6C39877B1FBF6599002539A7 /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3987791FBF6599002539A7 /* App.storyboard */; };
 		6C39877D1FBF6599002539A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C39877C1FBF6599002539A7 /* Assets.xcassets */; };
 		6C3987801FBF6599002539A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C39877E1FBF6599002539A7 /* LaunchScreen.storyboard */; };
 		6C39878B1FBF6599002539A7 /* ReceiptsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C39878A1FBF6599002539A7 /* ReceiptsTests.swift */; };
 		6C3987961FBF6599002539A7 /* ReceiptsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3987951FBF6599002539A7 /* ReceiptsUITests.swift */; };
+		6C87DD851FC9FE90008BBDC0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD841FC9FE90008BBDC0 /* AppCoordinator.swift */; };
+		6C87DD871FC9FFCB008BBDC0 /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD861FC9FFCB008BBDC0 /* ReceiptDetailViewController.swift */; };
+		6C87DD8A1FCA5AAE008BBDC0 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD891FCA5AAE008BBDC0 /* Webservice.swift */; };
+		6C87DD8C1FCA5B15008BBDC0 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD8B1FCA5B15008BBDC0 /* Receipt.swift */; };
+		6C87DD8F1FCAF140008BBDC0 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C87DD8E1FCAF140008BBDC0 /* SwiftyJSON.framework */; };
+		6C87DD921FCAFF95008BBDC0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD911FCAFF95008BBDC0 /* Ingredient.swift */; };
+		6C87DD941FCB072F008BBDC0 /* ReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD931FCB072F008BBDC0 /* ReceiptViewModel.swift */; };
+		6C87DD961FCB0752008BBDC0 /* IngredientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD951FCB0752008BBDC0 /* IngredientViewModel.swift */; };
+		6C87DD991FCB3587008BBDC0 /* UIImage+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD981FCB3587008BBDC0 /* UIImage+Helper.swift */; };
+		6C87DD9B1FCB3ADB008BBDC0 /* UIImageView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C87DD9A1FCB3ADB008BBDC0 /* UIImageView+Helper.swift */; };
+		6CAA36F11FC860F60021A5AC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA36F01FC860F60021A5AC /* SearchViewController.swift */; };
+		6CAA36F31FC86BC10021A5AC /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA36F21FC86BC10021A5AC /* PopOverViewController.swift */; };
+		6CAA36F71FC995DC0021A5AC /* UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA36F61FC995DC0021A5AC /* UICollectionViewDelegate.swift */; };
+		6CF23BD21FC2446600AFF9A2 /* ReceiptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF23BD11FC2446600AFF9A2 /* ReceiptCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +50,8 @@
 /* Begin PBXFileReference section */
 		6C3987721FBF6599002539A7 /* Receipts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Receipts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3987751FBF6599002539A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6C3987771FBF6599002539A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6C39877A1FBF6599002539A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6C3987771FBF6599002539A7 /* ReceiptListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListController.swift; sourceTree = "<group>"; };
+		6C39877A1FBF6599002539A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/App.storyboard; sourceTree = "<group>"; };
 		6C39877C1FBF6599002539A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6C39877F1FBF6599002539A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C3987811FBF6599002539A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +61,20 @@
 		6C3987911FBF6599002539A7 /* ReceiptsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReceiptsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3987951FBF6599002539A7 /* ReceiptsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsUITests.swift; sourceTree = "<group>"; };
 		6C3987971FBF6599002539A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C87DD841FC9FE90008BBDC0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		6C87DD861FC9FFCB008BBDC0 /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
+		6C87DD891FCA5AAE008BBDC0 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		6C87DD8B1FCA5B15008BBDC0 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		6C87DD8E1FCAF140008BBDC0 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		6C87DD911FCAFF95008BBDC0 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		6C87DD931FCB072F008BBDC0 /* ReceiptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewModel.swift; sourceTree = "<group>"; };
+		6C87DD951FCB0752008BBDC0 /* IngredientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewModel.swift; sourceTree = "<group>"; };
+		6C87DD981FCB3587008BBDC0 /* UIImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Helper.swift"; sourceTree = "<group>"; };
+		6C87DD9A1FCB3ADB008BBDC0 /* UIImageView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Helper.swift"; sourceTree = "<group>"; };
+		6CAA36F01FC860F60021A5AC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6CAA36F21FC86BC10021A5AC /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
+		6CAA36F61FC995DC0021A5AC /* UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewDelegate.swift; sourceTree = "<group>"; };
+		6CF23BD11FC2446600AFF9A2 /* ReceiptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C87DD8F1FCAF140008BBDC0 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +110,7 @@
 				6C3987891FBF6599002539A7 /* ReceiptsTests */,
 				6C3987941FBF6599002539A7 /* ReceiptsUITests */,
 				6C3987731FBF6599002539A7 /* Products */,
+				6C87DD8D1FCAF140008BBDC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,9 +127,15 @@
 		6C3987741FBF6599002539A7 /* Receipts */ = {
 			isa = PBXGroup;
 			children = (
+				6C87DD971FCB3539008BBDC0 /* Helpers */,
+				6C87DD881FCA5A88008BBDC0 /* Services */,
+				6C87DD831FC9FE5B008BBDC0 /* Coordinators */,
+				6CF23BD01FC2418100AFF9A2 /* Views */,
+				6CAA36F81FC9A0BF0021A5AC /* ModelViews */,
+				6CF23BCF1FC2417300AFF9A2 /* Models */,
+				6CF23BCE1FC2414500AFF9A2 /* Controllers */,
 				6C3987751FBF6599002539A7 /* AppDelegate.swift */,
-				6C3987771FBF6599002539A7 /* ViewController.swift */,
-				6C3987791FBF6599002539A7 /* Main.storyboard */,
+				6C3987791FBF6599002539A7 /* App.storyboard */,
 				6C39877C1FBF6599002539A7 /* Assets.xcassets */,
 				6C39877E1FBF6599002539A7 /* LaunchScreen.storyboard */,
 				6C3987811FBF6599002539A7 /* Info.plist */,
@@ -125,6 +161,77 @@
 			path = ReceiptsUITests;
 			sourceTree = "<group>";
 		};
+		6C87DD831FC9FE5B008BBDC0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				6C87DD841FC9FE90008BBDC0 /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		6C87DD881FCA5A88008BBDC0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6C87DD891FCA5AAE008BBDC0 /* Webservice.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6C87DD8D1FCAF140008BBDC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C87DD8E1FCAF140008BBDC0 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C87DD971FCB3539008BBDC0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6C87DD981FCB3587008BBDC0 /* UIImage+Helper.swift */,
+				6C87DD9A1FCB3ADB008BBDC0 /* UIImageView+Helper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6CAA36F81FC9A0BF0021A5AC /* ModelViews */ = {
+			isa = PBXGroup;
+			children = (
+				6C87DD931FCB072F008BBDC0 /* ReceiptViewModel.swift */,
+				6C87DD951FCB0752008BBDC0 /* IngredientViewModel.swift */,
+			);
+			path = ModelViews;
+			sourceTree = "<group>";
+		};
+		6CF23BCE1FC2414500AFF9A2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6C3987771FBF6599002539A7 /* ReceiptListController.swift */,
+				6CAA36F01FC860F60021A5AC /* SearchViewController.swift */,
+				6CAA36F21FC86BC10021A5AC /* PopOverViewController.swift */,
+				6C87DD861FC9FFCB008BBDC0 /* ReceiptDetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6CF23BCF1FC2417300AFF9A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6C87DD8B1FCA5B15008BBDC0 /* Receipt.swift */,
+				6C87DD911FCAFF95008BBDC0 /* Ingredient.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6CF23BD01FC2418100AFF9A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6CF23BD11FC2446600AFF9A2 /* ReceiptCollectionViewCell.swift */,
+				6CAA36F61FC995DC0021A5AC /* UICollectionViewDelegate.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +242,7 @@
 				6C39876E1FBF6599002539A7 /* Sources */,
 				6C39876F1FBF6599002539A7 /* Frameworks */,
 				6C3987701FBF6599002539A7 /* Resources */,
+				6C87DD901FCAF161008BBDC0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -234,7 +342,7 @@
 			files = (
 				6C3987801FBF6599002539A7 /* LaunchScreen.storyboard in Resources */,
 				6C39877D1FBF6599002539A7 /* Assets.xcassets in Resources */,
-				6C39877B1FBF6599002539A7 /* Main.storyboard in Resources */,
+				6C39877B1FBF6599002539A7 /* App.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,13 +362,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6C87DD901FCAF161008BBDC0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6C39876E1FBF6599002539A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C3987781FBF6599002539A7 /* ViewController.swift in Sources */,
+				6C87DD8C1FCA5B15008BBDC0 /* Receipt.swift in Sources */,
+				6C3987781FBF6599002539A7 /* ReceiptListController.swift in Sources */,
+				6C87DD991FCB3587008BBDC0 /* UIImage+Helper.swift in Sources */,
+				6CF23BD21FC2446600AFF9A2 /* ReceiptCollectionViewCell.swift in Sources */,
+				6CAA36F31FC86BC10021A5AC /* PopOverViewController.swift in Sources */,
+				6CAA36F71FC995DC0021A5AC /* UICollectionViewDelegate.swift in Sources */,
+				6C87DD941FCB072F008BBDC0 /* ReceiptViewModel.swift in Sources */,
+				6C87DD961FCB0752008BBDC0 /* IngredientViewModel.swift in Sources */,
+				6CAA36F11FC860F60021A5AC /* SearchViewController.swift in Sources */,
 				6C3987761FBF6599002539A7 /* AppDelegate.swift in Sources */,
+				6C87DD9B1FCB3ADB008BBDC0 /* UIImageView+Helper.swift in Sources */,
+				6C87DD871FC9FFCB008BBDC0 /* ReceiptDetailViewController.swift in Sources */,
+				6C87DD851FC9FE90008BBDC0 /* AppCoordinator.swift in Sources */,
+				6C87DD921FCAFF95008BBDC0 /* Ingredient.swift in Sources */,
+				6C87DD8A1FCA5AAE008BBDC0 /* Webservice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,12 +435,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6C3987791FBF6599002539A7 /* Main.storyboard */ = {
+		6C3987791FBF6599002539A7 /* App.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6C39877A1FBF6599002539A7 /* Base */,
 			);
-			name = Main.storyboard;
+			name = App.storyboard;
 			sourceTree = "<group>";
 		};
 		6C39877E1FBF6599002539A7 /* LaunchScreen.storyboard */ = {
@@ -428,6 +567,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 66D3N3AM56;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Receipts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.emrashliev.Receipts;
@@ -443,6 +586,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 66D3N3AM56;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Receipts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.emrashliev.Receipts;
