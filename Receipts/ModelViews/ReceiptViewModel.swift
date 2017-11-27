@@ -12,32 +12,45 @@ struct ReceiptViewModel {
     
     let receipt: Receipt
     
-    func name() -> String {
+    init(receipt: Receipt) {
+        self.receipt = receipt
+    }
+    
+    private(set) lazy var ingredientViewModels = {
+        receipt.ingredients?.map { IngredientViewModel(ingredient: $0) } ?? [IngredientViewModel]()
+    }()
+    
+    
+    var name: String {
         return receipt.name
     }
     
-    func ingredients() -> String {
+    var numberOfingredients: String {
+        
         let count = receipt.ingredients?.count ?? 0
         return "\(count) ingredients"
     }
     
-    func ingredientsSectionTitle() -> String {
+    var ingredientsSectionTitle: String {
         let count = receipt.ingredients?.count ?? 0
         return "Ingredients \(count)"
     }
     
-    func minutes() -> String {
+    var minutes: String {
         return "\(receipt.timers.reduce(0, +)) minutes"
     }
     
-    func imageURL() -> URL? {
+    var steps: [String] {
+        return receipt.steps
+    }
+    
+    var imageURL: URL? {
         return URL(string: receipt.imageURL)
     }
     
-    func ingredientViewModel(at index: Int) -> IngredientViewModel? {
-        guard let ingredients = receipt.ingredients,
-            ingredients.indices.contains(index) else { return nil }
-        return IngredientViewModel(ingredient: ingredients[index])
+    mutating func ingredientViewModel(at index: Int) -> IngredientViewModel? {
+        guard ingredientViewModels.indices.contains(index) else { return nil }
+        return ingredientViewModels[index]
     }
     
     func step(at index: Int) -> String? {

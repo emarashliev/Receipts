@@ -12,11 +12,16 @@ struct IngredientViewModel {
     
     let ingredient: Ingredient
     
+    init(ingredient: Ingredient) {
+        self.ingredient = ingredient
+    }
+    
+    var quantity: String {
+        return ingredient.quantity
+    }
+    
     func item(number: Int) -> String {
         return "Item #\(number) \(ingredient.name)"
     }
     
-    func quantity() -> String {
-        return ingredient.quantity
-    }
 }

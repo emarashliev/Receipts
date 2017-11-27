@@ -26,6 +26,7 @@ class AppCoordinator: NSObject {
         let viewController =
             storyboard.instantiateViewController(withIdentifier: identifier) as! ReceiptListController
         viewController.delegate = self
+        viewController.searchViewControllerDelegate = self
         return viewController
     }()
     
@@ -36,7 +37,7 @@ class AppCoordinator: NSObject {
         return viewController
     }()
     
-    private lazy var popOverController: PopOverViewController = {
+    private lazy var popOverViewController: PopOverViewController = {
         let identifier = String(describing: PopOverViewController.self)
         let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
             as! PopOverViewController
@@ -49,17 +50,43 @@ class AppCoordinator: NSObject {
     }
 }
 
-
+// MARK: - ReceiptListControllerDelegate
 extension AppCoordinator: ReceiptListControllerDelegate {
     
-    func didSelect(receipt: Receipt) {
-        detailViewController.receipt = receipt
+    func didSelect(receipt: ReceiptViewModel) {
+        detailViewController.receiptViewModel = receipt
         navigationController.pushViewController(detailViewController, animated: true)
     }
     
-    func popOverViewController() -> PopOverViewController {
-        return popOverController
+    func searchViewController() -> SearchViewController? {
+        return listViewController.childViewControllers.first as? SearchViewController
+    }
+    
+}
+
+// MARK: - SearchViewControllerDelegate
+extension AppCoordinator: SearchViewControllerDelegate {
+ 
+    func showPopOverViewController(with sourceView: UIView) {
+        popOverViewController.preferredContentSize =
+            CGSize(width: UIScreen.main.bounds.width - 100, height: 100)
+        popOverViewController.modalPresentationStyle = .popover
+        let popover = popOverViewController.popoverPresentationController!
+        popover.delegate = self
+        popover.permittedArrowDirections = .up
+        
+        popover.sourceView = sourceView
+        popover.sourceRect = sourceView.bounds
+        
+        searchViewController()?.present(popOverViewController, animated: true)
     }
 }
 
-
+// MARK: - UIPopoverPresentationControllerDelegate
+extension AppCoordinator: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController,
+                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+}

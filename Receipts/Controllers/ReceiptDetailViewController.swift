@@ -10,21 +10,15 @@ import UIKit
 
 final class ReceiptDetailViewController: UIViewController {
     
+    var receiptViewModel: ReceiptViewModel!
+
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var image: UIImageView!
+    
     private enum Sections: Int {
         case ingredients = 0
         case steps = 1
     }
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var image: UIImageView!
-    
-    var receipt: Receipt! {
-        willSet {
-            receiptViewModel = ReceiptViewModel(receipt: newValue)
-        }
-    }
-    
-    private var receiptViewModel: ReceiptViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +28,7 @@ final class ReceiptDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        image.image(withURL: receiptViewModel.imageURL())
+        image.image(withURL: receiptViewModel.imageURL)
     }
     
     private func setupNavigationBar() {
@@ -73,7 +67,7 @@ extension ReceiptDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case Sections.ingredients.rawValue:
-            return receiptViewModel.ingredientsSectionTitle()
+            return receiptViewModel.ingredientsSectionTitle
         case Sections.steps.rawValue:
             return "Instructions"
         default:
@@ -89,7 +83,7 @@ extension ReceiptDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
                 as! IngredientsTableViewCell
             cell.item.text = ingredientViewModel.item(number: indexPath.row + 1)
-            cell.quantity.text = ingredientViewModel.quantity()
+            cell.quantity.text = ingredientViewModel.quantity
             return cell
         case Sections.steps.rawValue:
             let identifier = String(describing: InstructionTableViewCell.self)

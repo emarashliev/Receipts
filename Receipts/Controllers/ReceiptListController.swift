@@ -9,8 +9,8 @@
 import UIKit
 
 protocol ReceiptListControllerDelegate: class {
-    func didSelect(receipt: Receipt)
-    func popOverViewController() -> PopOverViewController
+    func didSelect(receipt: ReceiptViewModel)
+    func searchViewController() -> SearchViewController?
 }
 
 final class ReceiptListController: UIViewController {
@@ -18,9 +18,10 @@ final class ReceiptListController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     weak var delegate: ReceiptListControllerDelegate!
+    weak var searchViewControllerDelegate: SearchViewControllerDelegate!
     
-    private var allReceipts = [Receipt]()
-    private var receiptsToShow = [Receipt]() {
+    private var allReceipts = [ReceiptViewModel]()
+    private var receiptsToShow = [ReceiptViewModel]() {
         didSet {
             self.collectionView.reloadData()
         }
@@ -32,15 +33,13 @@ final class ReceiptListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Webservice.load(resource: Receipt.all) { [weak self] result in
-            self?.allReceipts = result ?? [Receipt]()
-            self?.receiptsToShow = result ?? [Receipt]()
+            if let receipts = result?.map({ ReceiptViewModel(receipt: $0) }) {
+                self?.allReceipts = receipts
+                self?.receiptsToShow = receipts
+            }
         }
-        
-        if let searchViewController = childViewControllers.first as? SearchViewController {
-            searchViewController.popOverViewController = delegate.popOverViewController()
-            searchViewController.searchBar.delegate = self
-        }
-        
+        delegate.searchViewController()?.delegate = searchViewControllerDelegate
+        delegate.searchViewController()?.searchBar.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -67,11 +66,11 @@ extension ReceiptListController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = String(describing: ReceiptCollectionViewCell.self)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! ReceiptCollectionViewCell
-        let receiptViewModel = ReceiptViewModel(receipt: receiptsToShow[indexPath.row])
-        cell.title.text = receiptViewModel.name()
-        cell.ingredients.text = receiptViewModel.ingredients()
-        cell.minutes.text = receiptViewModel.minutes()
-        cell.image.image(withURL: receiptViewModel.imageURL())
+        let receiptViewModel =  receiptsToShow[indexPath.row]
+        cell.title.text = receiptViewModel.name
+        cell.ingredients.text = receiptViewModel.numberOfingredients
+        cell.minutes.text = receiptViewModel.minutes
+        cell.image.image(withURL: receiptViewModel.imageURL)
         return cell
     }
 }
@@ -103,15 +102,14 @@ extension ReceiptListController: UISearchBarDelegate {
         if textDidChange.count > 0 {
             let searchText = textDidChange.lowercased()
             receiptsToShow = allReceipts.filter { receipt  in
-                let ingredients = receipt.ingredients ?? [Ingredient]()
+                let receiptModel = receipt.receipt
+                let ingredientsModel = receiptModel.ingredients
                 return receipt.name.lowercased().contains(searchText) ||
-                    receipt.steps.map { $0.lowercased().contains(searchText) }.contains(true) ||
-                    ingredients.map { $0.name.lowercased().contains(searchText) }.contains(true)
+                    receiptModel.steps.map { $0.lowercased().contains(searchText) }.contains(true) ||
+                    ingredientsModel?.map { $0.name.lowercased().contains(searchText) }.contains(true) ?? false
             }
         } else {
             receiptsToShow = allReceipts
         }
     }
-    
 }
-

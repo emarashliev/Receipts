@@ -8,9 +8,13 @@
 
 import UIKit
 
-final class SearchViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+protocol SearchViewControllerDelegate: class {
+    func showPopOverViewController(with sourceView: UIView)
+}
+
+final class SearchViewController: UIViewController {
     
-    var popOverViewController: PopOverViewController?
+    weak var delegate: SearchViewControllerDelegate!
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -18,22 +22,12 @@ final class SearchViewController: UIViewController, UIPopoverPresentationControl
         super.viewDidLoad()
     }
     
-    @IBAction func easyPressed(_ sender: Any) {
-        guard let popOverViewController = self.popOverViewController else { return }
-        popOverViewController.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
-        popOverViewController.modalPresentationStyle = .popover
-        let popover = popOverViewController.popoverPresentationController!
-        popover.delegate = self
-        popover.permittedArrowDirections = .up
-        
-        popover.sourceView = sender as? UIView
-        popover.sourceRect = (sender as! UIView).bounds
-        
-        present(popOverViewController, animated: true)
+    @IBAction func difficultyButtonPressed(_ sender: UIButton) {
+        delegate.showPopOverViewController(with: sender)
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController,
-                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
+    @IBAction func timeButtonPressed(_ sender: UIButton) {
+        delegate.showPopOverViewController(with: sender)
     }
+    
 }

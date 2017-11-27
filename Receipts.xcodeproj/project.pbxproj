@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C0CC1241FCC9BAF00413157 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0CC1231FCC9BAF00413157 /* FilterTableViewCell.swift */; };
 		6C3987761FBF6599002539A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3987751FBF6599002539A7 /* AppDelegate.swift */; };
 		6C3987781FBF6599002539A7 /* ReceiptListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3987771FBF6599002539A7 /* ReceiptListController.swift */; };
 		6C39877B1FBF6599002539A7 /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3987791FBF6599002539A7 /* App.storyboard */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C0CC1231FCC9BAF00413157 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		6C3987721FBF6599002539A7 /* Receipts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Receipts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3987751FBF6599002539A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C3987771FBF6599002539A7 /* ReceiptListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				6CF23BD11FC2446600AFF9A2 /* ReceiptCollectionViewCell.swift */,
 				6C54A7421FCB90F500C1D2D5 /* IngredientsTableViewCell.swift */,
 				6C54A7441FCB912D00C1D2D5 /* InstructionTableViewCell.swift */,
+				6C0CC1231FCC9BAF00413157 /* FilterTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				6C87DD871FC9FFCB008BBDC0 /* ReceiptDetailViewController.swift in Sources */,
 				6C87DD851FC9FE90008BBDC0 /* AppCoordinator.swift in Sources */,
 				6C87DD921FCAFF95008BBDC0 /* Ingredient.swift in Sources */,
+				6C0CC1241FCC9BAF00413157 /* FilterTableViewCell.swift in Sources */,
 				6C87DD8A1FCA5AAE008BBDC0 /* Webservice.swift in Sources */,
 				6C54A7451FCB912D00C1D2D5 /* InstructionTableViewCell.swift in Sources */,
 			);
