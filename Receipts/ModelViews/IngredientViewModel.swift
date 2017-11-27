@@ -11,4 +11,12 @@ import Foundation
 struct IngredientViewModel {
     
     let ingredient: Ingredient
+    
+    func item(number: Int) -> String {
+        return "Item #\(number) \(ingredient.name)"
+    }
+    
+    func quantity() -> String {
+        return ingredient.quantity
+    }
 }

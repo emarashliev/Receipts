@@ -9,48 +9,31 @@
 import UIKit
 
 final class SearchViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-
+    
+    var popOverViewController: PopOverViewController?
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     @IBAction func easyPressed(_ sender: Any) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "PopOverViewController") as! PopOverViewController
-        vc.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
-        vc.modalPresentationStyle = .popover
-        let popover = vc.popoverPresentationController!
+        guard let popOverViewController = self.popOverViewController else { return }
+        popOverViewController.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
+        popOverViewController.modalPresentationStyle = .popover
+        let popover = popOverViewController.popoverPresentationController!
         popover.delegate = self
         popover.permittedArrowDirections = .up
         
         popover.sourceView = sender as? UIView
         popover.sourceRect = (sender as! UIView).bounds
         
-        present(vc, animated: true) {
-            
-        }
+        present(popOverViewController, animated: true)
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+    func adaptivePresentationStyle(for controller: UIPresentationController,
+                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
