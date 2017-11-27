@@ -17,13 +17,33 @@ final class ReceiptListController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    
     weak var delegate: ReceiptListControllerDelegate!
     weak var searchViewControllerDelegate: SearchViewControllerDelegate!
+    
+    private var difficultyFilter: Difficulty = .any{
+        didSet {
+            filterTheReceipts()
+        }
+    }
+    
+    private var timeFIlter: CookingTime = .any {
+        didSet {
+            filterTheReceipts()
+        }
+    }
+    
+    private var searchText = "" {
+        didSet {
+            filterTheReceipts()
+        }
+    }
     
     private var allReceipts = [ReceiptViewModel]()
     private var receiptsToShow = [ReceiptViewModel]() {
         didSet {
-            self.collectionView.reloadData()
+            collectionView.reloadData()
         }
     }
     
@@ -53,6 +73,42 @@ final class ReceiptListController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.isNavigationBarHidden = false
     }
+    
+    func filterDidSelect(filter: ReceiptFIlter, filterType: FilterType) {
+        switch filterType {
+        case .difficulty:
+            difficultyFilter = filter as? Difficulty ?? .any
+        default:
+            timeFIlter = filter as? CookingTime ?? .any
+        }
+    }
+    
+    private func filterTheReceipts() {
+        let searchText = self.searchText.lowercased()
+        let filteredReceipts = allReceipts.filter { receipt in
+            if difficultyFilter != .any {
+                return receipt.difficulty() == difficultyFilter
+            }
+            return true
+            }.filter { receipt in
+                if timeFIlter != .any {
+                    return receipt.cookingTime() == timeFIlter
+                }
+                return true
+        }
+        
+        if searchText.count > 0 {
+            receiptsToShow = filteredReceipts.filter { receipt  in
+                let receiptModel = receipt.receipt
+                let ingredientsModel = receiptModel.ingredients
+                return receipt.name.lowercased().contains(searchText) ||
+                    receiptModel.steps.map { $0.lowercased().contains(searchText) }.contains(true) ||
+                    ingredientsModel?.map { $0.name.lowercased().contains(searchText) }.contains(true) ?? false
+            }
+        } else {
+            receiptsToShow = filteredReceipts
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -77,7 +133,7 @@ extension ReceiptListController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension ReceiptListController: UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -99,17 +155,6 @@ extension ReceiptListController: UICollectionViewDelegateFlowLayout {
 extension ReceiptListController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange: String) {
-        if textDidChange.count > 0 {
-            let searchText = textDidChange.lowercased()
-            receiptsToShow = allReceipts.filter { receipt  in
-                let receiptModel = receipt.receipt
-                let ingredientsModel = receiptModel.ingredients
-                return receipt.name.lowercased().contains(searchText) ||
-                    receiptModel.steps.map { $0.lowercased().contains(searchText) }.contains(true) ||
-                    ingredientsModel?.map { $0.name.lowercased().contains(searchText) }.contains(true) ?? false
-            }
-        } else {
-            receiptsToShow = allReceipts
-        }
+        searchText = textDidChange
     }
 }

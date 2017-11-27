@@ -37,13 +37,12 @@ class AppCoordinator: NSObject {
         return viewController
     }()
     
-    private lazy var popOverViewController: PopOverViewController = {
+    func newPopOverViewController() -> PopOverViewController {
         let identifier = String(describing: PopOverViewController.self)
         let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
             as! PopOverViewController
         return viewController
-
-    }()
+    }
     
     func start() {
         self.navigationController.viewControllers = [self.listViewController]
@@ -67,9 +66,12 @@ extension AppCoordinator: ReceiptListControllerDelegate {
 // MARK: - SearchViewControllerDelegate
 extension AppCoordinator: SearchViewControllerDelegate {
  
-    func showPopOverViewController(with sourceView: UIView) {
+    func showPopOverViewController(with sourceView: UIView, and type: FilterType) {
+        let popOverViewController = newPopOverViewController()
+        popOverViewController.deledate = self
+        popOverViewController.filterType = type
         popOverViewController.preferredContentSize =
-            CGSize(width: UIScreen.main.bounds.width - 100, height: 100)
+            CGSize(width: UIScreen.main.bounds.width / 2, height: 120)
         popOverViewController.modalPresentationStyle = .popover
         let popover = popOverViewController.popoverPresentationController!
         popover.delegate = self
@@ -82,6 +84,16 @@ extension AppCoordinator: SearchViewControllerDelegate {
     }
 }
 
+extension AppCoordinator: PopOverViewControllerDelegate {
+    func applyFIlter(filter: ReceiptFIlter, filterType: FilterType) {
+        searchViewController()?.filterDidSelect(filter: filter, filterType: filterType)
+        listViewController.filterDidSelect(filter: filter, filterType: filterType)
+        searchViewController()?.dismiss(animated: true)
+    }
+    
+    
+}
+
 // MARK: - UIPopoverPresentationControllerDelegate
 extension AppCoordinator: UIPopoverPresentationControllerDelegate {
     
@@ -90,3 +102,6 @@ extension AppCoordinator: UIPopoverPresentationControllerDelegate {
         return .none
     }
 }
+
+
+
