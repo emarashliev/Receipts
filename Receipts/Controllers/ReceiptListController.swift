@@ -17,8 +17,6 @@ final class ReceiptListController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
-    
     weak var delegate: ReceiptListControllerDelegate!
     weak var searchViewControllerDelegate: SearchViewControllerDelegate!
     

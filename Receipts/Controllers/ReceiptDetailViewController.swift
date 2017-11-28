@@ -11,9 +11,10 @@ import UIKit
 final class ReceiptDetailViewController: UIViewController {
     
     var receiptViewModel: ReceiptViewModel!
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     private enum Sections: Int {
         case ingredients = 0
@@ -24,11 +25,14 @@ final class ReceiptDetailViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         image.image(withURL: receiptViewModel.imageURL)
+        titleLabel.text = receiptViewModel.name
+        tableView.reloadData()
     }
     
     private func setupNavigationBar() {
@@ -47,6 +51,7 @@ final class ReceiptDetailViewController: UIViewController {
     
 }
 
+// MARK: - UITableViewDataSource
 extension ReceiptDetailViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,5 +101,4 @@ extension ReceiptDetailViewController: UITableViewDataSource {
         }
     }
 }
-
 
