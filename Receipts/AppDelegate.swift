@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = appCoordinator?.rootViewController
         window?.makeKeyAndVisible()
         appCoordinator?.start()
+        
+        URLCache.shared = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
         return true
     }
 }

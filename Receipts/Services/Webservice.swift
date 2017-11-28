@@ -11,7 +11,13 @@ import SwiftyJSON
 final class Webservice {
     
     static func load<T>(resource: Resource<T>, completion: @escaping (T?) -> ()) {
-        URLSession.shared.dataTask(with: resource.url) { data, response, error  in
+        if isExpired() {
+            URLCache.shared.removeAllCachedResponses()
+            anHourSinceNow()
+        }
+        var request = URLRequest(url: resource.url)
+        request.cachePolicy = .returnCacheDataElseLoad
+        URLSession.shared.dataTask(with: request) { data, response, error  in
             guard let data = data else {
                 print(error ?? "")
                 DispatchQueue.main.async { completion(nil) }
@@ -21,7 +27,24 @@ final class Webservice {
             DispatchQueue.main.async { completion(result) }
             }.resume()
     }
+    
+    private static func anHourSinceNow() {
+        let anHourSinceNow = Date(timeIntervalSinceNow: 3600).timeIntervalSince1970
+        UserDefaults.standard.set(anHourSinceNow, forKey: "anHourSinceNow")
+    }
+    
+    private static func isExpired() -> Bool {
+        guard let anHour = UserDefaults.standard.value(forKey: "anHourSinceNow") as? TimeInterval else {
+            anHourSinceNow()
+            return false
+        }
+        return anHour < Date().timeIntervalSince1970
+    }
+
+    
+    
 }
+
 
 struct Resource<T> {
     let url: URL
